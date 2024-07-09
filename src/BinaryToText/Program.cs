@@ -4,21 +4,32 @@
     {
         if (args.Length > 0)
         {
-            var firstByte = args[0];
-            int unicode = 0;
+            string result = "";
 
-            for (int i = 0; i < firstByte.Length; i++)
+            for (int i = 0; i < args.Length; i++)
             {
-                if (firstByte[i] == '1') {
-                    unicode += (int)Math.Pow(2, firstByte.Length - i - 1);
-                }
+                result += GetUnicode(args[i]);
             }
 
-            System.Console.WriteLine((char) unicode);
+            System.Console.WriteLine(result);
         }
         else
         {
             System.Console.WriteLine("No input detected!");
         }
+    }
+
+    private static char GetUnicode(string binaryString)
+    {
+        int unicode = 0;
+
+        for (int i = 0; i < binaryString.Length; i++)
+        {
+            if (binaryString[i] == '1') {
+                unicode += (int)Math.Pow(2, binaryString.Length - i - 1);
+            }
+        }
+
+        return (char) unicode;
     }
 }
